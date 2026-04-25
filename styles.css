@@ -1,0 +1,152 @@
+:root {
+    --work: #4a90e2;
+    --ministry: #7ed321;
+    --family: #f5a623;
+    --personal: #9b59b6;
+    --awaiting: #ef4444;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom, #fcfaf7, #f5f2ed);
+    color: #1a1a1a;
+    min-height: 100vh;
+}
+
+.font-serif { font-family: 'Playfair Display', serif; }
+
+.glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.task-card {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.task-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 4px; height: 100%;
+    transition: width 0.2s ease;
+}
+
+.task-card:hover::before { width: 6px; }
+
+.task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -5px rgba(0,0,0,0.08);
+}
+
+.category-work::before { background: var(--work); }
+.category-ministry::before { background: var(--ministry); }
+.category-family::before { background: var(--family); }
+.category-personal::before { background: var(--personal); }
+.category-awaiting::before { background: var(--awaiting); }
+
+.completed {
+    opacity: 0.55;
+    text-decoration: line-through;
+}
+
+.completed .task-title { color: #9ca3af; }
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active { display: flex; animation: fadeIn 0.2s ease; }
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+.badge-work { background: #dbeafe; color: #1e40af; }
+.badge-ministry { background: #dcfce7; color: #166534; }
+.badge-family { background: #fef3c7; color: #92400e; }
+.badge-personal { background: #f3e8ff; color: #6b21a8; }
+.badge-awaiting { background: #fee2e2; color: #991b1b; }
+
+.scroll-container {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+}
+
+.scroll-container::-webkit-scrollbar { height: 6px; }
+.scroll-container::-webkit-scrollbar-track { background: transparent; }
+.scroll-container::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+
+.layer-bg {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+}
+
+.horizon-row {
+    transition: all 0.2s ease;
+}
+
+.horizon-row:hover {
+    background: rgba(255,255,255,0.6);
+    transform: translateX(4px);
+}
+
+.priority-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.priority-high { background: #ef4444; }
+.priority-medium { background: #f59e0b; }
+.priority-low { background: #10b981; }
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #333;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    transform: translateY(100px);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.toast.show { transform: translateY(0); }
+
+.horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scroll-card {
+    flex: 0 0 320px;
+    min-height: 400px;
+}
